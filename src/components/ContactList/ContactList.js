@@ -12,7 +12,8 @@ const propTypes = {
     contacts: PropTypes.arrayOf(
         PropTypes.shape(contactPropTypes)
     )
-}
+};
+
 const ContactList = ({ contacts }) => (
     <Sider className="contact-list">
         {
@@ -23,7 +24,7 @@ const ContactList = ({ contacts }) => (
     </Sider>
 );
 
-ContactList.defaultProps = {};
+ContactList.defaultProps = { contacts: [] };
 ContactList.propTypes = propTypes;
 
 export default ContactList;
