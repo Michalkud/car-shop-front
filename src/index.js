@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import registerServiceWorker from 'services/registerServiceWorker';
+import store from './store';
 import 'styles/main.scss';
 
 const Root = () => (
-    <Provider>
+    <Provider store={store}>
     <div>
         New react app!
     </div>
