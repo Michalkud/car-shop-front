@@ -4,13 +4,12 @@ import { Provider } from 'react-redux';
 
 import registerServiceWorker from 'services/registerServiceWorker';
 import store from './store';
+import Application from 'components/Application';
 import 'styles/main.scss';
 
 const Root = () => (
     <Provider store={store}>
-    <div>
-        New react app!
-    </div>
+    <Application />
     </Provider>
 );
 
