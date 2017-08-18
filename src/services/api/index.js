@@ -31,7 +31,7 @@ class API {
             }];
 
             return new Promise((resolve, reject) => {
-                setTimeout(() => resolve(contacts), 100)
+                setTimeout(() => resolve(contacts), 100);
             });
     }
 }
