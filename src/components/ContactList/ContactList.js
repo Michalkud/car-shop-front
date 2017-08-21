@@ -11,7 +11,8 @@ const { Sider } = Layout;
 const propTypes = {
     contacts: PropTypes.arrayOf(
         PropTypes.shape(contactPropTypes)
-    )
+    ),
+    setProductById: PropTypes.func.isRequired
 };
 
 class ContactList extends Component {
@@ -21,12 +22,11 @@ class ContactList extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <Sider className="contact-list">
             {   
                 this.props.contacts.map((contact, i) => (
-                    <Contact key={i} {...contact} /> 
+                    <Contact key={i} { ...contact} onClick={this.props.setProductById} /> 
                 ))
             }
             </Sider>

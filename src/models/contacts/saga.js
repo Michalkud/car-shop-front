@@ -8,9 +8,7 @@ import API from 'services/api';
 
 const _requestContacts = function*() {
     const contacts = yield call(API.fetchContacts);
-    console.log(contacts);
     if (_.isObjectLike(contacts)) {
-        console.log(contacts);
         yield put(actions.requestContactsSuccess(contacts));
     } else {
         yield put(actions.requestProductsError('Something went wrong'));  

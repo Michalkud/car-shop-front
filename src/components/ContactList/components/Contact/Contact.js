@@ -1,12 +1,13 @@
 import React from 'react';
+import { Button } from 'antd';
 //import PropTypes from 'prop-types';
 
 import propTypes from './propTypes';
 
 const Contact = (props) => (
-    <div>
+    <Button onClick={(e) => props.onClick(props.id)}>
         {props.name} {props.phone}
-    </div>
+    </Button>
 );
 
 Contact.defaultProps = {};

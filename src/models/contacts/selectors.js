@@ -2,7 +2,7 @@
 
 const _translateToShortVersion = (contacts) => {
     return contacts.map((contact) => {
-        return { name: contact.name, phone: contact.phone };
+        return { id: contact.id, name: contact.name, phone: contact.phone };
     });
 };
 
