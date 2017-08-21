@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Layout } from 'antd';
 import PropTypes from 'prop-types';
 
@@ -14,15 +14,25 @@ const propTypes = {
     )
 };
 
-const ContactList = ({ contacts }) => (
-    <Sider className="contact-list">
-        {
-            contacts.map((contact, i) => (
-                <Contact key={i} {...contact} /> 
-            ))
-        }
-    </Sider>
-);
+class ContactList extends Component {
+
+    componentDidMount() {
+        this.props.loadContacts();
+    }
+
+    render() {
+        console.log(this.props);
+        return (
+            <Sider className="contact-list">
+            {   
+                this.props.contacts.map((contact, i) => (
+                    <Contact key={i} {...contact} /> 
+                ))
+            }
+            </Sider>
+        );
+    }
+}
 
 ContactList.defaultProps = { contacts: [] };
 ContactList.propTypes = propTypes;

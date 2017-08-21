@@ -4,16 +4,18 @@ const requestContacts = () => ({
     type: types.REQUEST_CONTACTS
 });
 
-const requestProductsSuccess = (data) => ({
-    type: types.REQUEST_PRODUCTS_SUCCESS,
+const requestContactsSuccess = (data) => ({
+    type: types.REQUEST_CONTACTS_SUCCESS,
     payload: { data }
   });
   
   const requestProductsError = (message) => ({
-    type: types.REQUEST_PRODUCTS_ERROR,
+    type: types.REQUEST_CONTACTS_ERROR,
     payload: { message }
   });
 
 export {
-    requestContacts
+    requestContacts,
+    requestContactsSuccess,
+    requestProductsError
 };

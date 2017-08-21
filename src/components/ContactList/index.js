@@ -2,16 +2,18 @@ import { connect } from 'react-redux';
 
 import ContactList from './ContactList.js';
 
-import { selectors as contactsSelectors } from 'models/contacts';
+import { actions as contactActions, selectors as contactsSelectors } from 'models/contacts';
 
 const mapStateToProps = state => {
     return {
-        contacts: contactsSelectors.selectShortContacts(state)
+        contacts: contactsSelectors.selectShortContacts(state.contacts)
     };
 };
 
 const mapDispatchToProps = dispatch => {
-    return {};
+    return {
+        loadContacts: () => dispatch(contactActions.requestContacts())
+    };
 };
 
 
