@@ -5,9 +5,9 @@ const requestContacts = () => ({
 });
 
 const selectContactById = (data) => ({
-    type: types.SELECT_CONTACT,
+    type: types.SELECT_CONTACT_BY_ID,
     payload: { data }
-})
+});
 
 const requestContactsSuccess = (data) => ({
     type: types.REQUEST_CONTACTS_SUCCESS,
