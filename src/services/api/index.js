@@ -1,40 +1,25 @@
+import request from 'request';
+
 class API {
 
     fetchContacts() {
-        const contacts = [
-            {
-                id: 1,
-                name : 'Michal Kudrnáč',
-                phone: '604 385 782',
-                address: 'Na Cihlářce 576, Nová Paka, 50901',
-                email: 'michalkud@gmail.com',
-                web: 'bravecrew.cz',
-                birthday: '10.6.1993'
-            },
-            {
-                id: 2,
-                name : 'Hana Kudrnáčová',
-                phone: '604 385 782',
-                address: 'Na Cihlářce 576, Nová Paka, 50901',
-                email: 'michalkud@gmail.com',
-                web: 'bravecrew.cz',
-                birthday: '10.6.1993'
-            },
-            {
-                id: 3,
-                name : 'Honza Kudrnáč',
-                phone: '604 385 782',
-                address: 'Na Cihlářce 576, Nová Paka, 50901',
-                email: 'michalkud@gmail.com',
-                web: 'bravecrew.cz',
-                birthday: '10.6.1993'
-            }];
 
-            return new Promise((resolve, reject) => {
-                setTimeout(() => { 
-                    resolve(contacts); 
-                }, 100);
+        return new Promise((resolve, reject) => {
+            request('http://localhost:3000/contacts', function(error, response, body) {
+
+                resolve(JSON.parse(body));
             });
+        });
+    }
+
+    editContact(data) {
+        console.log(data);
+        return new Promise((resolve, reject) => {
+            request({ method: 'PUT', uri: 'http://localhost:3000/contacts/' + data.id, body: data }, function(error, response, body) {
+              console.log(error, response, body);
+              resolve('ok');
+            });
+        });
     }
 }
 

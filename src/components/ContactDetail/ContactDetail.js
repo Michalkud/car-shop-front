@@ -5,76 +5,78 @@ import PropTypes from 'prop-types';
 const { Content } = Layout; 
 
 const propTypes = {
+    data: PropTypes.shape({
     name : PropTypes.string,
     phone: PropTypes.string,
     address: PropTypes.string,
     email: PropTypes.string,
     web: PropTypes.string,
     birthday: PropTypes.string
+    }),
+    editContact: PropTypes.func.isRequired
 };
 
 class ContactDetail extends Component {
 
     constructor(props) {
         super(props);
-        this.state = props;
-
+        this.state = props.contact;
+    
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     componentDidMount() {
 
     }
 
-    handleChange(event) {
-        this.setState({ value: event.target.value });
+    componentWillReceiveProps() {
+        this.state = this.props.contact;
+    }
+
+    // TODO implement better way
+    handleChange(event, id) {
+        let obj = {};
+        obj[id] = event.target.value;
+        this.setState(obj);
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        console.log(this.state);
+        this.props.editContact(this.state);
         event.preventDefault();
     }
 
     render() {
-        console.log(this.props);
         return (
             <Layout>
                 <Content>
-                    <form onSubmit={this.handleSubmit}>
+
                         <label>
                             Name:
-                            <input type="text" value={this.props.name} onChange={this.handleChange} />
+                            <input type="text" value={this.state.name} onChange={(e) => this.handleChange(e, 'name')} />
                         </label>
                         <label>
                             Phone:
-                            <input type="text" value={this.props.phone} onChange={this.handleChange} />
+                            <input type="text" value={this.state.phone} onChange={(e) => this.handleChange(e, 'phone')} />
                         </label>
                         <label>
                             Address:
-                            <input type="text" value={this.props.address} onChange={this.handleChange} />
+                            <input type="text" value={this.state.address} onChange={(e) => this.handleChange(e, 'address')} />
                         </label>
                         <label>
                             Email:
-                            <input type="text" value={this.props.email} onChange={this.handleChange} />
+                            <input type="text" value={this.state.email} onChange={(e) => this.handleChange(e, 'email')} />
                         </label>
                         <label>
                             Birthday:
-                            <input type="text" value={this.props.birthday} onChange={this.handleChange} />
+                            <input type="text" value={this.state.birthday} onChange={(e) => this.handleChange(e, 'birthday')} />
                         </label>
                         <label>
                             Web:
-                            <input type="text" value={this.props.web} onChange={this.handleChange} />
+                            <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
                         </label>
-                        <input type="submit" value="Submit" />
+                        <button onClick={() => this.props.editContact(this.state)} > Save </button>
                         
-                    </form>  
-                    {/* {this.props.name}  
-                    {this.props.phone}
-                    {this.props.address}
-                    {this.props.email}
-                    {this.props.web}
-                    {this.props.birthday} */}
                 </Content>
             </Layout>
         );

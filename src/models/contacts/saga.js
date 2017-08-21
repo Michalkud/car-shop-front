@@ -15,12 +15,25 @@ const _requestContacts = function*() {
     }
 };
 
+const _editContact = function*(data) {
+    const contact = yield call(() => API.editContact(data.payload.data));
+
+    if (_.isObjectLike(contact)) {
+        yield put(actions.editContactSuccess(contact));
+    }
+};
+
+const editContact = function*(data) {
+    yield takeLatest(types.EDIT_CONTACT, _editContact);
+};
+
 const requestContacts = function*() {
     yield takeLatest(types.REQUEST_CONTACTS, _requestContacts);
 };
 
 const saga = [
-    requestContacts
+    requestContacts,
+    editContact
 ];
 
 export default saga.map(s => fork(s));

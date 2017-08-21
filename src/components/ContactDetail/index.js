@@ -1,13 +1,18 @@
 import ContactDetail from './ContactDetail.js';
 import { connect } from 'react-redux';
+import { actions as contactsAction } from 'models/contacts'; 
 
 const mapStateToProps = state => {
 
-    return state.contacts.selectedContact;
+    return { 
+        contact: state.contacts.selectedContact
+    };
 };
 
 const mapDispatchToProps = dispatch => {
-    return {};
+    return {
+        editContact: (data) => dispatch(contactsAction.editContact(data))
+    };
 };
 
 export default connect(
