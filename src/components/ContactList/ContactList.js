@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Button } from 'antd';
 import PropTypes from 'prop-types';
 
 //import Contact from './components/Contact';
@@ -29,8 +29,14 @@ class ContactList extends Component {
     this.props.setContactById(Number(e.key));
   }
 
+  handleDelete = () => {
+    console.log(this.props);
+    this.props.deleteContactById(this.props.selectedContact.id)
+  }
+
   render() {
     return (
+      <div>
       <Menu theme="dark" mode="inline" onClick={this.handleClick}>
         {   
           this.props.contacts.map((contact, i) => (
@@ -40,7 +46,12 @@ class ContactList extends Component {
             </Menu.Item> 
           ))
         }
+        
+
       </Menu>
+      <Button onClick={this.handleDelete}>DELETE CONTACT</Button>
+      <Button onClick={this.props.selectEmptyUser} >NEW CONTACT</Button>
+      </div>
     );
   }
 }

@@ -36,6 +36,18 @@ const reducer = (state = initState, action) => {
                 ...state,
                 selectedContact: Object.assign({}, payload.data)
             };
+        case types.SELECT_EMPTY:
+            return {
+                ...state,
+                selectedContact: {
+                    name : '',
+                    phone: '',
+                    address: '',
+                    email: '',
+                    web: '',
+                    birthday: ''
+                }
+            };
         default:
             return state;
     }

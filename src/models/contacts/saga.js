@@ -31,12 +31,31 @@ const _requestContactById = function*(data) {
     }
 }
 
-const editContact = function*(data) {
+const _deleteContactById = function*(data) {
+
+    const res = yield call(API.deleteContactById, data.payload.id);
+    
+    if (res === 'OK') {
+        const contacts = yield call(API.fetchContacts);
+        yield put(actions.requestContactsSuccess(contacts));
+    }
+};
+
+const _createContact = function*(data) {
+    console.log(data);
+    const contact = yield call(API.createContact, data.payload.data);
+
+    if (_.isObjectLike(contact)) {
+        const contacts = yield call(API.fetchContacts);
+        yield put(actions.requestContactsSuccess(contacts));
+    }
+};
+
+const editContact = function*() {
     yield takeLatest(types.EDIT_CONTACT, _editContact);
 };
 
-const requestContactById = function*(data) {
-    console.log(data);
+const requestContactById = function*() {
     yield takeLatest(types.REQUEST_CONTACT_BY_ID, _requestContactById);
 };
 
@@ -44,10 +63,20 @@ const requestContacts = function*() {
     yield takeLatest(types.REQUEST_CONTACTS, _requestContacts);
 };
 
+const deleteContactById = function*() {
+    yield takeLatest(types.DELETE_CONTACT_BY_ID, _deleteContactById)
+};
+
+const createContact = function*() {
+    yield takeLatest(types.CREATE_CONTACT, _createContact)
+}
+
 const saga = [
     requestContacts,
     editContact,
-    requestContactById
+    requestContactById,
+    deleteContactById,
+    createContact
 ];
 
 export default saga.map(s => fork(s));

@@ -6,14 +6,17 @@ import { actions as contactActions, selectors as contactsSelectors } from 'model
 
 const mapStateToProps = state => {
     return {
-        contacts: contactsSelectors.selectShortContacts(state.contacts)
+        contacts: contactsSelectors.selectShortContacts(state.contacts),
+        selectedContact: state.contacts.selectedContact
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         loadContacts: () => dispatch(contactActions.requestContacts()),
-        setContactById: (id) => dispatch(contactActions.selectContactById(id))
+        setContactById: (id) => dispatch(contactActions.selectContactById(id)),
+        deleteContactById: (id) => dispatch(contactActions.deleteContactById(id)),
+        selectEmptyUser: () => dispatch(contactActions.selectEmptyUser())
     };
 };
 

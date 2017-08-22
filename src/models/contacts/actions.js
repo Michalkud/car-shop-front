@@ -4,6 +4,20 @@ const requestContacts = () => ({
     type: types.REQUEST_CONTACTS
 });
 
+const deleteContactById = (id) => ({
+    type: types.DELETE_CONTACT_BY_ID,
+    payload: { id }
+});
+
+const createContact = (data) => ({
+    type: types.CREATE_CONTACT,
+    payload: { data }
+})
+
+const selectEmptyUser = () => ({
+    type: types.SELECT_EMPTY
+})
+
 const selectContactById = (data) => ({
     type: types.REQUEST_CONTACT_BY_ID,
     payload: { data }
@@ -43,5 +57,8 @@ export {
     selectContactById,
     editContact,
     editContactSuccess,
-    getContactSuccess
+    getContactSuccess,
+    deleteContactById,
+    createContact,
+    selectEmptyUser
 };

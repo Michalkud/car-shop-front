@@ -44,7 +44,31 @@ class API {
                 });
             
         });
+    }
 
+    deleteContactById(id) {
+
+        return new Promise((resolve, reject) => {
+            requester.delete('/remove/' + id)
+                .then(function (response) {
+                resolve(response.data);
+                })
+                .catch(function (error) {
+                });
+        });
+    }
+
+    createContact(data) {
+        return new Promise((resolve, reject) => {
+            
+            requester.post('/create', data )
+                .then(function (response) {
+                resolve(response.data);
+                })
+                .catch(function (error) {
+                });
+            
+        });
     }
 }
 

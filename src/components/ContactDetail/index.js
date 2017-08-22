@@ -11,7 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        editContact: (data) => dispatch(contactsAction.editContact(data))
+        editContact: (data) => dispatch(contactsAction.editContact(data)),
+        createContact: (data) => dispatch(contactsAction.createContact(data))
     };
 };
 

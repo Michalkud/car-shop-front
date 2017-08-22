@@ -73,6 +73,7 @@ class ContactDetail extends Component {
                     <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
                 </p>
                 <button onClick={() => this.props.editContact(this.state)} > Save </button>
+                <button onClick={() => this.props.createContact(this.state)} > Create </button>
                     
             </div>
         );
