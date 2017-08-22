@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon } from 'antd';
+import { Icon, message } from 'antd';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -39,11 +39,13 @@ class ContactDetail extends Component {
         this.setState(obj);
     }
 
-    handleCreate() {
-        console.log(this);
-        //this.state.props.createContact(this.state);
-        //this.state.props.selectEmptyUser();
-    }
+    created = () => {
+        message.success('User was successfully created!', 3);
+    };
+
+    updated = () => {
+        message.info('User was updated!', 3);
+    };
 
     render() {
         return (
@@ -77,10 +79,20 @@ class ContactDetail extends Component {
                 {
                     //TODO do better way
                 this.state.id &&
-                <button onClick={() => this.props.editContact(this.state)} > Save </button>
+                <button onClick={() => {
+                    this.props.editContact(this.state);
+                    //TODO do this after user was really updated!
+                    this.updated();
+                    }
+                } > Save </button>
                 }
                 {!this.state.id &&
-                <button onClick={ () => this.props.createContact(this.state)} > Create </button>
+                <button onClick={ () => {
+                        this.props.createContact(this.state);
+                        //TODO do this after user was really created!
+                        this.created();
+                    }
+                }> Create </button>
                 }
             </div>
         );
