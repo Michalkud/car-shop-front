@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 
-const { Content, Header, Footer, Sider } = Layout; 
+const { Content, Sider } = Layout; 
 
 import ContactDetail from 'components/ContactDetail';
 import ContactList from 'components/ContactList';
@@ -15,9 +15,6 @@ const Application = () => (
       <ContactList />
     </Sider>
     <Layout>
-      <Header style={{ background: '#fff', padding: 0 }}>
-        sdfsd
-      </Header>
       <Content
         style={{
           margin: '24px 16px',
@@ -28,9 +25,6 @@ const Application = () => (
       >
         <ContactDetail />
       </Content>
-      <Footer>
-        dsfdsf
-      </Footer>
     </Layout>
   </Layout>
 );

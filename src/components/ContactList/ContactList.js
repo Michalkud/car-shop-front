@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Menu, Icon, Button } from 'antd';
+import { Menu, Icon, Button, Popover } from 'antd';
 import PropTypes from 'prop-types';
 
-//import Contact from './components/Contact';
 import contactPropTypes from './components/Contact/propTypes';
 
 const propTypes = {
@@ -18,6 +17,7 @@ class ContactList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      visible : false,
       defaultSelectedKeys: ['1']
     };
   }
@@ -32,6 +32,17 @@ class ContactList extends Component {
 
   handleDelete = () => {
     this.props.deleteContactById(this.props.selectedContact.id);
+    this.hide();
+  }
+
+  handleVisibleChange = (visible) => {
+    this.setState({ visible });
+  }
+
+  hide = () => {
+    this.setState({
+      visible: false,
+    });
   }
 
   render() {
@@ -50,8 +61,26 @@ class ContactList extends Component {
 
       </Menu>
       { this.props.selectedContact.id &&
-      <Button onClick={this.handleDelete}>DELETE CONTACT</Button>
+
+      <Popover
+          content={
+          <div>
+            <Button type="danger" onClick={this.handleDelete}>Yes</Button>
+            <Button onClick={this.hide} >No</Button>
+            
+          </div>
+          }
+          title="Are you sure?"
+          trigger="click"
+          visible={this.state.visible}
+          onVisibleChange={this.handleVisibleChange}
+        >
+          <Button type="danger">Delete contact</Button>
+      </Popover>
       }
+
+  
+
       <Button onClick={this.props.selectEmptyUser} >NEW CONTACT</Button>
 
 
