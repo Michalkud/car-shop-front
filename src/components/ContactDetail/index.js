@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         editContact: (data) => dispatch(contactsAction.editContact(data)),
-        createContact: (data) => dispatch(contactsAction.createContact(data))
+        createContact: (data) => dispatch(contactsAction.createContact(data)),
+        selectEmptyUser: () => dispatch(contactsAction.selectEmptyUser())
     };
 };
 

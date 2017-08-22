@@ -18,7 +18,15 @@ const reducer = (state = initState, action) => {
         case types.REQUEST_CONTACTS_SUCCESS:
             return {
                 ...state,
-                contacts: payload.data
+                contacts: payload.data,
+                selectedContact: {
+                    name : '',
+                    phone: '',
+                    address: '',
+                    email: '',
+                    web: '',
+                    birthday: ''
+                }
             };
         case types.EDIT_CONTACT_SUCCESS:
             return {

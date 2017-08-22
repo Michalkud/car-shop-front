@@ -11,7 +11,8 @@ const propTypes = {
     web: PropTypes.string,
     birthday: PropTypes.string
     }),
-    editContact: PropTypes.func.isRequired
+    editContact: PropTypes.func.isRequired,
+    createContact: PropTypes.func.isRequired
 };
 
 class ContactDetail extends Component {
@@ -21,7 +22,6 @@ class ContactDetail extends Component {
         this.state = props.contact;
     
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
         this.state = this.props.contact;
@@ -39,9 +39,10 @@ class ContactDetail extends Component {
         this.setState(obj);
     }
 
-    handleSubmit(event) {
-        this.props.editContact(this.state);
-        event.preventDefault();
+    handleCreate() {
+        console.log(this);
+        //this.state.props.createContact(this.state);
+        //this.state.props.selectEmptyUser();
     }
 
     render() {
@@ -72,9 +73,12 @@ class ContactDetail extends Component {
                     Web:
                     <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
                 </p>
+                {this.state.id &&
                 <button onClick={() => this.props.editContact(this.state)} > Save </button>
-                <button onClick={() => this.props.createContact(this.state)} > Create </button>
-                    
+                }
+                {!this.state.id &&
+                <button onClick={ () => this.props.createContact(this.state)} > Create </button>
+                }
             </div>
         );
     }
