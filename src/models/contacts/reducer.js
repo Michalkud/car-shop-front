@@ -1,15 +1,16 @@
 import * as types from './types';
+
+const emptyContact = {
+    name : '',
+    phone: '',
+    address: '',
+    email: '',
+    web: '',
+    birthday: ''
+}
 const initState = {
     contacts: [],
-    selectedContact: {
-        id: 3,
-        name : 'Honza Kudrnáč',
-        phone: '604 385 782',
-        address: 'Na Cihlářce 576, Nová Paka, 50901',
-        email: 'michalkud@gmail.com',
-        web: 'bravecrew.cz',
-        birthday: '10.6.1993'
-    }
+    selectedContact: emptyContact
 };
 
 const reducer = (state = initState, action) => {
@@ -19,14 +20,7 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 contacts: payload.data,
-                selectedContact: {
-                    name : '',
-                    phone: '',
-                    address: '',
-                    email: '',
-                    web: '',
-                    birthday: ''
-                }
+                selectedContact: emptyContact
             };
         case types.EDIT_CONTACT_SUCCESS:
             return {
@@ -47,14 +41,7 @@ const reducer = (state = initState, action) => {
         case types.SELECT_EMPTY:
             return {
                 ...state,
-                selectedContact: {
-                    name : '',
-                    phone: '',
-                    address: '',
-                    email: '',
-                    web: '',
-                    birthday: ''
-                }
+                selectedContact: emptyContact
             };
         default:
             return state;
