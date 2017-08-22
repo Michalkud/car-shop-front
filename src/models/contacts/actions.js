@@ -14,6 +14,7 @@ const createContact = (data) => ({
     payload: { data }
 })
 
+// TODO remove this function and make new user popup form.
 const selectEmptyUser = () => ({
     type: types.SELECT_EMPTY
 })

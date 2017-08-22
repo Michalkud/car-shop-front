@@ -73,7 +73,10 @@ class ContactDetail extends Component {
                     Web:
                     <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
                 </p>
-                {this.state.id &&
+
+                {
+                    //TODO do better way
+                this.state.id &&
                 <button onClick={() => this.props.editContact(this.state)} > Save </button>
                 }
                 {!this.state.id &&
