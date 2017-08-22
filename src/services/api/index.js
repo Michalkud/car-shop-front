@@ -1,24 +1,44 @@
-import request from 'request';
+import axios from 'axios';
 
 class API {
 
+
+
     fetchContacts() {
 
-        return new Promise((resolve, reject) => {
-            request('http://localhost:3000/contacts', function(error, response, body) {
+        const requester = axios.create({
+            baseURL: 'http://localhost:3000/',
+            timeout: 1000
+          });
 
-                resolve(JSON.parse(body));
+        return new Promise((resolve, reject) => {
+            requester.get('/contacts')
+            .then(function (response) {
+
+              resolve(response.data);
+            })
+            .catch(function (error) {
             });
+          
         });
     }
 
     editContact(data) {
-        console.log(data);
+
+        const requester = axios.create({
+            baseURL: 'http://localhost:3000/',
+            timeout: 1000
+        });
+
         return new Promise((resolve, reject) => {
-            request({ method: 'PUT', uri: 'http://localhost:3000/contacts/' + data.id, body: data }, function(error, response, body) {
-              console.log(error, response, body);
-              resolve('ok');
-            });
+
+            requester.put('/contacts/' + data.id, data )
+              .then(function (response) {
+                resolve(response.data);
+              })
+              .catch(function (error) {
+              });
+
         });
     }
 }

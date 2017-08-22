@@ -32,7 +32,16 @@ const reducer = (state = initState, action) => {
         case types.EDIT_CONTACT:
             return state;
         case types.EDIT_CONTACT_SUCCESS:
-            return state;
+            return {
+                ...state,
+                contacts: state.contacts.map((contact) => {
+                    if (contact.id === payload.data.id) {
+                        return payload.data;
+                    } else {
+                        return contact;
+                    }
+                })
+            };
         default:
             return state;
     }

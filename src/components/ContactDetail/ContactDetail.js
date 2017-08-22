@@ -26,12 +26,13 @@ class ContactDetail extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-
-    }
-
-    componentWillReceiveProps() {
         this.state = this.props.contact;
     }
+
+    componentWillReceiveProps(props) {
+        this.state = props.contact;
+    }
+
 
     // TODO implement better way
     handleChange(event, id) {
@@ -41,7 +42,6 @@ class ContactDetail extends Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state);
         this.props.editContact(this.state);
         event.preventDefault();
     }
@@ -50,32 +50,31 @@ class ContactDetail extends Component {
         return (
             <Layout>
                 <Content>
-
-                        <label>
-                            Name:
-                            <input type="text" value={this.state.name} onChange={(e) => this.handleChange(e, 'name')} />
-                        </label>
-                        <label>
-                            Phone:
-                            <input type="text" value={this.state.phone} onChange={(e) => this.handleChange(e, 'phone')} />
-                        </label>
-                        <label>
-                            Address:
-                            <input type="text" value={this.state.address} onChange={(e) => this.handleChange(e, 'address')} />
-                        </label>
-                        <label>
-                            Email:
-                            <input type="text" value={this.state.email} onChange={(e) => this.handleChange(e, 'email')} />
-                        </label>
-                        <label>
-                            Birthday:
-                            <input type="text" value={this.state.birthday} onChange={(e) => this.handleChange(e, 'birthday')} />
-                        </label>
-                        <label>
-                            Web:
-                            <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
-                        </label>
-                        <button onClick={() => this.props.editContact(this.state)} > Save </button>
+                    <label>
+                        Name:
+                        <input type="text" value={this.state.name} onChange={(e) => this.handleChange(e, 'name')} />
+                    </label>
+                    <label>
+                        Phone:
+                        <input type="text" value={this.state.phone} onChange={(e) => this.handleChange(e, 'phone')} />
+                    </label>
+                    <label>
+                        Address:
+                        <input type="text" value={this.state.address} onChange={(e) => this.handleChange(e, 'address')} />
+                    </label>
+                    <label>
+                        Email:
+                        <input type="text" value={this.state.email} onChange={(e) => this.handleChange(e, 'email')} />
+                    </label>
+                    <label>
+                        Birthday:
+                        <input type="text" value={this.state.birthday} onChange={(e) => this.handleChange(e, 'birthday')} />
+                    </label>
+                    <label>
+                        Web:
+                        <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
+                    </label>
+                    <button onClick={() => this.props.editContact(this.state)} > Save </button>
                         
                 </Content>
             </Layout>
