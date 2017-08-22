@@ -5,9 +5,14 @@ const requestContacts = () => ({
 });
 
 const selectContactById = (data) => ({
-    type: types.SELECT_CONTACT_BY_ID,
+    type: types.REQUEST_CONTACT_BY_ID,
     payload: { data }
 });
+
+const getContactSuccess = (data) => ({
+    type: types.GET_CONTACT_SUCCESS,
+    payload: { data }
+})
 
 const requestContactsSuccess = (data) => ({
     type: types.REQUEST_CONTACTS_SUCCESS,
@@ -17,7 +22,7 @@ const requestContactsSuccess = (data) => ({
 const editContactSuccess = (data) => ({
     type: types.EDIT_CONTACT_SUCCESS,
     payload: { data }
-})
+});
 
 const editContact = (data) => ({
     type: types.EDIT_CONTACT,
@@ -37,5 +42,6 @@ export {
     requestProductsError,
     selectContactById,
     editContact,
-    editContactSuccess
+    editContactSuccess,
+    getContactSuccess
 };

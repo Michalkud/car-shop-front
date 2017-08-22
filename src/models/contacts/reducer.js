@@ -12,25 +12,14 @@ const initState = {
     }
 };
 
-const selectContactById = (contacts, id) => {
-    return contacts.filter((contact) => contact.id === id )[0];
-};
-
 const reducer = (state = initState, action) => {
     const { payload } = action;
     switch (action.type) {
-        case types.SELECT_CONTACT_BY_ID:
-            return {
-                ...state,
-                selectedContact: selectContactById(state.contacts, payload.data)
-            };
         case types.REQUEST_CONTACTS_SUCCESS:
             return {
                 ...state,
                 contacts: payload.data
             };
-        case types.EDIT_CONTACT:
-            return state;
         case types.EDIT_CONTACT_SUCCESS:
             return {
                 ...state,
@@ -41,6 +30,11 @@ const reducer = (state = initState, action) => {
                         return contact;
                     }
                 })
+            };
+        case types.GET_CONTACT_SUCCESS:
+            return {
+                ...state,
+                selectedContact: Object.assign({}, payload.data)
             };
         default:
             return state;

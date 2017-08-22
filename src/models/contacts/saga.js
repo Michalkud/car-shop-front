@@ -23,8 +23,21 @@ const _editContact = function*(data) {
     }
 };
 
+const _requestContactById = function*(data) {
+    const contact = yield call(API.getContact, data.payload.data);
+
+    if (_.isObjectLike(contact)) {
+        yield put(actions.getContactSuccess(contact));
+    }
+}
+
 const editContact = function*(data) {
     yield takeLatest(types.EDIT_CONTACT, _editContact);
+};
+
+const requestContactById = function*(data) {
+    console.log(data);
+    yield takeLatest(types.REQUEST_CONTACT_BY_ID, _requestContactById);
 };
 
 const requestContacts = function*() {
@@ -33,7 +46,8 @@ const requestContacts = function*() {
 
 const saga = [
     requestContacts,
-    editContact
+    editContact,
+    requestContactById
 ];
 
 export default saga.map(s => fork(s));

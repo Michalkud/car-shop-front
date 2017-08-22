@@ -1,15 +1,17 @@
 import axios from 'axios';
 
+const requester = axios.create({
+    baseURL: 'http://localhost:8080/',
+    timeout: 1000
+  });
+
 class API {
 
-    fetchContacts() {
-        const requester = axios.create({
-            baseURL: 'http://localhost:3000/',
-            timeout: 1000
-          });
 
+
+    fetchContacts() {
         return new Promise((resolve, reject) => {
-            requester.get('/contacts')
+            requester.get('/list')
             .then(function (response) {
               resolve(response.data);
             })
@@ -19,15 +21,9 @@ class API {
     }
 
     editContact(data) {
-
-        const requester = axios.create({
-            baseURL: 'http://localhost:3000/',
-            timeout: 1000
-        });
-
         return new Promise((resolve, reject) => {
 
-            requester.put('/contacts/' + data.id, data )
+            requester.put('/edit/' + data.id, data )
               .then(function (response) {
                 resolve(response.data);
               })
@@ -35,6 +31,20 @@ class API {
               });
 
         });
+    }
+
+    getContact(id) {
+        return new Promise((resolve, reject) => {
+            
+            requester.get('/detail/' + id)
+                .then(function (response) {
+                resolve(response.data);
+                })
+                .catch(function (error) {
+                });
+            
+        });
+
     }
 }
 

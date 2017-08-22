@@ -26,7 +26,6 @@ class ContactList extends Component {
   }
 
   handleClick = (e) => {
-    console.log('click ', e);
     this.props.setContactById(Number(e.key));
   }
 
