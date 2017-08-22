@@ -9,6 +9,7 @@ const propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape(contactPropTypes)
   ),
+  selectedContact: PropTypes.shape(contactPropTypes),
   setContactById: PropTypes.func.isRequired
 };
 
@@ -30,8 +31,7 @@ class ContactList extends Component {
   }
 
   handleDelete = () => {
-    console.log(this.props);
-    this.props.deleteContactById(this.props.selectedContact.id)
+    this.props.deleteContactById(this.props.selectedContact.id);
   }
 
   render() {
@@ -49,8 +49,12 @@ class ContactList extends Component {
         
 
       </Menu>
+      { this.props.selectedContact.id &&
       <Button onClick={this.handleDelete}>DELETE CONTACT</Button>
+      }
       <Button onClick={this.props.selectEmptyUser} >NEW CONTACT</Button>
+
+
       </div>
     );
   }
