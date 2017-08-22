@@ -6,16 +6,16 @@ import * as types from './types';
 import API from 'services/api';
 
 
-const _requestContacts = function*() {
+const _requestContacts = function* () {
     const contacts = yield call(API.fetchContacts);
     if (_.isObjectLike(contacts)) {
         yield put(actions.requestContactsSuccess(contacts));
     } else {
-        yield put(actions.requestProductsError('Something went wrong'));  
+        yield put(actions.requestProductsError('Something went wrong'));
     }
 };
 
-const _editContact = function*(data) {
+const _editContact = function* (data) {
     const contact = yield call(API.editContact, data.payload.data);
 
     if (_.isObjectLike(contact)) {
@@ -23,26 +23,25 @@ const _editContact = function*(data) {
     }
 };
 
-const _requestContactById = function*(data) {
+const _requestContactById = function* (data) {
     const contact = yield call(API.getContact, data.payload.data);
 
     if (_.isObjectLike(contact)) {
         yield put(actions.getContactSuccess(contact));
     }
-}
+};
 
-const _deleteContactById = function*(data) {
+const _deleteContactById = function* (data) {
 
     const res = yield call(API.deleteContactById, data.payload.id);
-    
+
     if (res === 'OK') {
         const contacts = yield call(API.fetchContacts);
         yield put(actions.requestContactsSuccess(contacts));
     }
 };
 
-const _createContact = function*(data) {
-    console.log(data);
+const _createContact = function* (data) {
     const contact = yield call(API.createContact, data.payload.data);
 
     if (_.isObjectLike(contact)) {
@@ -51,25 +50,25 @@ const _createContact = function*(data) {
     }
 };
 
-const editContact = function*() {
+const editContact = function* () {
     yield takeLatest(types.EDIT_CONTACT, _editContact);
 };
 
-const requestContactById = function*() {
+const requestContactById = function* () {
     yield takeLatest(types.REQUEST_CONTACT_BY_ID, _requestContactById);
 };
 
-const requestContacts = function*() {
+const requestContacts = function* () {
     yield takeLatest(types.REQUEST_CONTACTS, _requestContacts);
 };
 
-const deleteContactById = function*() {
-    yield takeLatest(types.DELETE_CONTACT_BY_ID, _deleteContactById)
+const deleteContactById = function* () {
+    yield takeLatest(types.DELETE_CONTACT_BY_ID, _deleteContactById);
 };
 
-const createContact = function*() {
-    yield takeLatest(types.CREATE_CONTACT, _createContact)
-}
+const createContact = function* () {
+    yield takeLatest(types.CREATE_CONTACT, _createContact);
+};
 
 const saga = [
     requestContacts,

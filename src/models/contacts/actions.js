@@ -12,12 +12,12 @@ const deleteContactById = (id) => ({
 const createContact = (data) => ({
     type: types.CREATE_CONTACT,
     payload: { data }
-})
+});
 
 // TODO remove this function and make new user popup form.
 const selectEmptyUser = () => ({
     type: types.SELECT_EMPTY
-})
+});
 
 const selectContactById = (data) => ({
     type: types.REQUEST_CONTACT_BY_ID,
@@ -27,7 +27,7 @@ const selectContactById = (data) => ({
 const getContactSuccess = (data) => ({
     type: types.GET_CONTACT_SUCCESS,
     payload: { data }
-})
+});
 
 const requestContactsSuccess = (data) => ({
     type: types.REQUEST_CONTACTS_SUCCESS,

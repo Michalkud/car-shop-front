@@ -51,6 +51,7 @@ class ContactDetail extends Component {
         return (
             <div>
                 <p>
+                    <Icon type="user" />
                     Name:
                     <input type="text" value={this.state.name} onChange={(e) => this.handleChange(e, 'name')} />
                 </p>

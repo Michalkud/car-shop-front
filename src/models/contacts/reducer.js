@@ -1,13 +1,13 @@
 import * as types from './types';
 
 const emptyContact = {
-    name : '',
+    name: '',
     phone: '',
     address: '',
     email: '',
     web: '',
     birthday: ''
-}
+};
 const initState = {
     contacts: [],
     selectedContact: emptyContact

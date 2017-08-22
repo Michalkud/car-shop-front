@@ -6,7 +6,7 @@ import saga from './saga';
 
 export {
     actions,
-    types, 
+    types,
     reducer,
     selectors,
     saga
