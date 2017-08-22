@@ -16,7 +16,7 @@ const _requestContacts = function*() {
 };
 
 const _editContact = function*(data) {
-    const contact = yield call(() => API.editContact(data.payload.data));
+    const contact = yield call(API.editContact, data.payload.data);
 
     if (_.isObjectLike(contact)) {
         yield put(actions.editContactSuccess(contact));

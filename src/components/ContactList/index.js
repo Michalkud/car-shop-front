@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         loadContacts: () => dispatch(contactActions.requestContacts()),
-        setProductById: (id) => dispatch(contactActions.selectContactById(id))
+        setContactById: (id) => dispatch(contactActions.selectContactById(id))
     };
 };
 

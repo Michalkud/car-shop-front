@@ -1,37 +1,49 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Menu, Icon } from 'antd';
 import PropTypes from 'prop-types';
 
-import './style.scss';
-import Contact from './components/Contact';
+//import Contact from './components/Contact';
 import contactPropTypes from './components/Contact/propTypes';
 
-const { Sider } = Layout; 
-
 const propTypes = {
-    contacts: PropTypes.arrayOf(
-        PropTypes.shape(contactPropTypes)
-    ),
-    setProductById: PropTypes.func.isRequired
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape(contactPropTypes)
+  ),
+  setContactById: PropTypes.func.isRequired
 };
 
 class ContactList extends Component {
 
-    componentDidMount() {
-        this.props.loadContacts();
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      defaultSelectedKeys: ['1']
+    };
+  }
 
-    render() {
-        return (
-            <Sider className="contact-list">
-            {   
-                this.props.contacts.map((contact, i) => (
-                    <Contact key={i} { ...contact} onClick={this.props.setProductById} /> 
-                ))
-            }
-            </Sider>
-        );
-    }
+  componentDidMount() {
+    this.props.loadContacts();
+  }
+
+  handleClick = (e) => {
+    console.log('click ', e);
+    this.props.setContactById(Number(e.key));
+  }
+
+  render() {
+    return (
+      <Menu theme="dark" mode="inline" onClick={this.handleClick}>
+        {   
+          this.props.contacts.map((contact, i) => (
+            <Menu.Item key={contact.id}>
+              <Icon type="user" />
+              <span className="nav-text">{contact.name}</span>
+            </Menu.Item> 
+          ))
+        }
+      </Menu>
+    );
+  }
 }
 
 ContactList.defaultProps = { contacts: [] };

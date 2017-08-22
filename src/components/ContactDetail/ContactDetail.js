@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Icon } from 'antd';
 import PropTypes from 'prop-types';
-
-const { Content } = Layout; 
 
 const propTypes = {
     data: PropTypes.shape({
@@ -48,36 +46,35 @@ class ContactDetail extends Component {
 
     render() {
         return (
-            <Layout>
-                <Content>
-                    <label>
-                        Name:
-                        <input type="text" value={this.state.name} onChange={(e) => this.handleChange(e, 'name')} />
-                    </label>
-                    <label>
-                        Phone:
-                        <input type="text" value={this.state.phone} onChange={(e) => this.handleChange(e, 'phone')} />
-                    </label>
-                    <label>
-                        Address:
-                        <input type="text" value={this.state.address} onChange={(e) => this.handleChange(e, 'address')} />
-                    </label>
-                    <label>
-                        Email:
-                        <input type="text" value={this.state.email} onChange={(e) => this.handleChange(e, 'email')} />
-                    </label>
-                    <label>
-                        Birthday:
-                        <input type="text" value={this.state.birthday} onChange={(e) => this.handleChange(e, 'birthday')} />
-                    </label>
-                    <label>
-                        Web:
-                        <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
-                    </label>
-                    <button onClick={() => this.props.editContact(this.state)} > Save </button>
-                        
-                </Content>
-            </Layout>
+            <div>
+                <p>
+                    Name:
+                    <input type="text" value={this.state.name} onChange={(e) => this.handleChange(e, 'name')} />
+                </p>
+                <p>
+                    Phone:
+                    <input type="text" value={this.state.phone} onChange={(e) => this.handleChange(e, 'phone')} />
+                </p>
+                <p>
+                    Address:
+                    <input type="text" value={this.state.address} onChange={(e) => this.handleChange(e, 'address')} />
+                </p>
+                <p>
+                    <Icon type="inbox" />
+                    Email:
+                    <input type="text" value={this.state.email} onChange={(e) => this.handleChange(e, 'email')} />
+                </p>
+                <p>
+                    Birthday:
+                    <input type="text" value={this.state.birthday} onChange={(e) => this.handleChange(e, 'birthday')} />
+                </p>
+                <p>
+                    Web:
+                    <input type="text" value={this.state.web} onChange={(e) => this.handleChange(e, 'web')} />
+                </p>
+                <button onClick={() => this.props.editContact(this.state)} > Save </button>
+                    
+            </div>
         );
     }
 }
