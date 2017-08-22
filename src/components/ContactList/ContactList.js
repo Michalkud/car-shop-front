@@ -17,7 +17,7 @@ class ContactList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible : false,
+      visible: false,
       defaultSelectedKeys: ['1']
     };
   }
@@ -48,40 +48,40 @@ class ContactList extends Component {
   render() {
     return (
       <div>
-      <Menu theme="dark" mode="inline" onClick={this.handleClick}>
-        {   
-          this.props.contacts.map((contact, i) => (
-            <Menu.Item key={contact.id}>
-              <Icon type="user" />
-              <span className="nav-text">{contact.name}</span>
-            </Menu.Item> 
-          ))
-        }
-        
-
-      </Menu>
-      { this.props.selectedContact.id &&
-
-      <Popover
-          content={
-          <div>
-            <Button type="danger" onClick={this.handleDelete}>Yes</Button>
-            <Button onClick={this.hide} >No</Button>
-            
-          </div>
+        <Menu theme="dark" mode="inline" onClick={this.handleClick}>
+          {
+            this.props.contacts.map((contact, i) => (
+              <Menu.Item key={contact.id}>
+                <Icon type="user" />
+                <span className="nav-text">{contact.name}</span>
+              </Menu.Item>
+            ))
           }
-          title="Are you sure?"
-          trigger="click"
-          visible={this.state.visible}
-          onVisibleChange={this.handleVisibleChange}
-        >
-          <Button type="danger">Delete contact</Button>
-      </Popover>
-      }
 
-  
 
-      <Button onClick={this.props.selectEmptyUser} >NEW CONTACT</Button>
+        </Menu>
+        {this.props.selectedContact.id &&
+
+          <Popover
+            content={
+              <div>
+                <Button type="danger" onClick={this.handleDelete}>Yes</Button>
+                <Button onClick={this.hide} >No</Button>
+
+              </div>
+            }
+            title="Are you sure?"
+            trigger="click"
+            visible={this.state.visible}
+            onVisibleChange={this.handleVisibleChange}
+          >
+            <Button type="danger"><Icon type="close" />Delete contact</Button>
+          </Popover>
+        }
+
+
+
+        <Button onClick={this.props.selectEmptyUser} ><Icon type="plus" />New contact</Button>
 
 
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, message } from 'antd';
+import { Icon, message, Button } from 'antd';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -80,20 +80,20 @@ class ContactDetail extends Component {
                 {
                     //TODO do better way
                 this.state.id &&
-                <button onClick={() => {
+                <Button onClick={() => {
                     this.props.editContact(this.state);
                     //TODO do this after user was really updated!
                     this.updated();
                     }
-                } > Save </button>
+                } ><Icon type="retweet" /> Update </Button>
                 }
                 {!this.state.id &&
-                <button onClick={ () => {
+                <Button onClick={ () => {
                         this.props.createContact(this.state);
                         //TODO do this after user was really created!
                         this.created();
                     }
-                }> Create </button>
+                }><Icon type="plus-square-o" /> Create </Button>
                 }
             </div>
         );
