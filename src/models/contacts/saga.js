@@ -42,6 +42,7 @@ const _deleteContactById = function* (data) {
     if (res === 'OK') {
         const contacts = yield call(API.fetchContacts);
         yield put(actions.requestContactsSuccess(contacts));
+        yield put(actions.deleteContactSuccess('Contact successfully deleted!'));
     } else {
         yield put(actions.deleteContactError('Something went wrong while contact deleting!'));
     }
@@ -53,6 +54,7 @@ const _createContact = function* (data) {
     if (_.isObjectLike(contact)) {
         const contacts = yield call(API.fetchContacts);
         yield put(actions.requestContactsSuccess(contacts));
+        yield put(actions.createContactSuccess('Contact was succesfully created!'));
     } else {
         yield put(actions.createContactError('Something went wrong!'));
     }
