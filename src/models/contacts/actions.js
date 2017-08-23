@@ -9,6 +9,16 @@ const deleteContactById = (id) => ({
     payload: { id }
 });
 
+const deleteContactSuccess = (message) => ({
+    type: types.DELETE_CONTACT_SUCCESS,
+    payload: { message }
+}); 
+
+const deleteContactError = (message) => ({
+    type: types.DELETE_CONTACT_SUCCESS,
+    payload: { message }
+}); 
+
 const createContact = (data) => ({
     type: types.CREATE_CONTACT,
     payload: { data }
@@ -29,6 +39,11 @@ const getContactSuccess = (data) => ({
     payload: { data }
 });
 
+const getContactError = ( message ) => ({
+    type: types.GET_CONTACT_ERROR,
+    payload: { message }
+});
+
 const requestContactsSuccess = (data) => ({
     type: types.REQUEST_CONTACTS_SUCCESS,
     payload: { data }
@@ -44,12 +59,25 @@ const editContact = (data) => ({
     payload: { data }
 });
 
-
-  
-  const requestProductsError = (message) => ({
+const requestProductsError = (message) => ({
     type: types.REQUEST_CONTACTS_ERROR,
     payload: { message }
-  });
+});
+
+const createContactError = (message) => ({
+    type: types.CREATE_CONTACT_ERROR,
+    payload: { message }
+});
+
+const editContactError = (message) => ({
+    type: types.EDIT_CONTACT_ERROR,
+    payload: { message }
+});
+
+const createContactSuccess = (message) => ({
+    type: types.CREATE_CONTACT_SUCCESS,
+    payload: { message }
+});
 
 export {
     requestContacts,
@@ -61,5 +89,11 @@ export {
     getContactSuccess,
     deleteContactById,
     createContact,
-    selectEmptyUser
+    selectEmptyUser,
+    createContactSuccess,
+    createContactError,
+    editContactError,
+    getContactError,
+    deleteContactSuccess,
+    deleteContactError
 };

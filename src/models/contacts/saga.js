@@ -20,6 +20,8 @@ const _editContact = function* (data) {
 
     if (_.isObjectLike(contact)) {
         yield put(actions.editContactSuccess(contact));
+    } else {
+        yield put(actions.editContactError('Error while editing contact!'));
     }
 };
 
@@ -28,6 +30,8 @@ const _requestContactById = function* (data) {
 
     if (_.isObjectLike(contact)) {
         yield put(actions.getContactSuccess(contact));
+    } else {
+        yield put(actions.getContactError('Error while loading contact!'));
     }
 };
 
@@ -38,6 +42,8 @@ const _deleteContactById = function* (data) {
     if (res === 'OK') {
         const contacts = yield call(API.fetchContacts);
         yield put(actions.requestContactsSuccess(contacts));
+    } else {
+        yield put(actions.deleteContactError('Something went wrong while contact deleting!'));
     }
 };
 
@@ -47,6 +53,8 @@ const _createContact = function* (data) {
     if (_.isObjectLike(contact)) {
         const contacts = yield call(API.fetchContacts);
         yield put(actions.requestContactsSuccess(contacts));
+    } else {
+        yield put(actions.createContactError('Something went wrong!'));
     }
 };
 
